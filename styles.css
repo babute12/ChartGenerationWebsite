@@ -1,0 +1,12 @@
+.container{
+    margin-top: 7.5px;
+}
+.collection-header > h4{
+    font-size: 20px;
+}
+.collection{
+    margin-top:0px;
+}
+.dropdown > button{
+    margin-bottom: 3px;
+}
