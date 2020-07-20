@@ -1,3 +1,4 @@
+
 //Class that creates canvas chart and updates it with new values
 class Canvas{
     
