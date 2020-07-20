@@ -20,7 +20,7 @@ class Canvas{
                 label: 'Weight in KG',
                 data: [],
                 backgroundColor: [
-                    'rgba(255, 255, 100, 0.2)',
+                    'rgba(255, 255, 120, 0.2)',
                 ],
                 borderColor: [
                     'rgba(255, 0, 0, 0.5)',
