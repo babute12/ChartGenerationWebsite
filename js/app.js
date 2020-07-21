@@ -5,6 +5,8 @@ let dataList = [];
 //Make so if removed value from list, it removes from graph [OK]
 //Make so that only 8 values could be on graph/list at once [OK]
 //Dates are bugged []
+//Make no more than 9 values available []
+//
 
 (function(){
     const valColl = document.querySelector('.collection');

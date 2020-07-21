@@ -86,13 +86,17 @@ class ValueList{
      * @param {The number displayed in list} value 
      */
     static addValue(entry){
+        if(this.row.length == 8){
+            document.querySelector('.collection-item').remove();
+            this.row.shift();
+        }
         this.row.push(entry);
         const li = document.createElement('li');
         li.classList.add('collection-item');
         li.innerHTML = `<div><span class="value">${entry.value}</span><a href="#!" class="secondary-content"><i class="material-icons remove">clear</i></a></div>`;
         this.valueList.appendChild(li);
-    }
-    
+        }
+
     /**
      * Removes value from value list
      * @param {Icon holding X symbol} target 
