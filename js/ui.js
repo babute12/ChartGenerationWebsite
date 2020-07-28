@@ -58,7 +58,7 @@ class Canvas{
         const dataSet = this.chart.data.datasets[0].data = [];
         const backgroundColor = this.chart.data.datasets[0].backgroundColor = [];
         const borderColor = this.chart.data.datasets[0].borderColor = [];
-        let index = (dataList.length - 1) - 8;
+        let index = (dataList.length - 1) - 7;
         
         if(index < 0){
             index = 0;
