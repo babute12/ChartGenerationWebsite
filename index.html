@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="col s1 dropdown">
-                    <button class="btn-small waves-effect waves-light right" id="lineChartBtn"><i class="material-icons">arrow_drop_down</i></button>
+                    <button class="btn-small waves-effect waves-light right" id="lineChartBtn"><i class="material-icons">menu</i></button>
                     <button class="btn-small waves-effect waves-light right hide" id="lineGraphBtn"><i class="material-icons">show_chart</i></button>
                     <button class="btn-small waves-effect waves-light right hide" id="barChartBtn"><i class="material-icons">insert_chart</i></button>
             </div>
@@ -23,9 +23,13 @@
                 <canvas id="myChart" width="400" height="400"></canvas>
             </div>
                 <div class="col s3">
-                 <ul class="collection with-header">
-                        <li class="collection-header center"><h4>Values</h4></li>
+                    <ul class="collection with-header">
+                         <li class="collection-header center"><h4>Values</h4></li>
                     </ul>
+                </div>
+                <div class="col s3 center">
+                    <button class="btn-small btn-show-list hide" id="listDownBtn"><i class="material-icons">arrow_drop_down</i></button>
+                    <button class="btn-small btn-show-list hide" id="listUpBtn"><i class="material-icons">arrow_drop_up</i></button>
                 </div>
             <div class="col s3">
                         <div class="col s12">

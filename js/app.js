@@ -6,13 +6,15 @@ let dataList = [];
 //Make so that only 9 values could be on graph/list at once [OK]
 //Dates are bugged [OK]
 //Make no more than 9 values available [OK]
-//ADD history dropdown, so if more than 9 values inputted I can see []
+//ADD history dropdown, so if more than 8 values inputted I can see []
 
 (function(){
     const valColl = document.querySelector('.collection');
     const inputBtn = document.querySelector('#submit');
     const saveBtn = document.querySelector('#save');
     const inputFld = document.querySelector('#input');
+    const listUpBtn = document.querySelector('#listUpBtn');
+    const listDownBtn = document.querySelector('#listDownBtn');
 
     document.querySelector('#lineGraphBtn').addEventListener('click', e => {
         e.preventDefault();
@@ -26,6 +28,17 @@ let dataList = [];
         Canvas.deleteChart();
         Canvas.createChart('bar');
         Canvas.update(dataList);
+    });
+
+    listUpBtn.addEventListener('click', e => {
+        //Rather than poping or splicing value list i need to take snapshots of it
+        ValueList.moveListUp();
+    });
+
+    
+    listDownBtn.addEventListener('click', e => {
+        //Rather than poping or splicing value list i need to take snapshots of it
+        ValueList.moveListDown();
     });
 
     //Remove from list on click
@@ -46,16 +59,25 @@ let dataList = [];
     //Submit on click
     inputBtn.addEventListener('click', e => {
         e.preventDefault();
+        
+        //If there are 8 values on list then the lowest displayed value index of that list increases
+        if(dataList.length > 7){
+            ValueList.lowIndex++;
+        }
+        
         const entry = {};
         entry.timestamp = Date.now();
         entry.date = getDate();
-        entry.value = input.value
+        entry.value = input.value;
         
         dataList.push(entry);
-        ValueList.addValue(entry);
-        
-        Canvas.update(dataList);
-        //WIP
+
+        //A prepared snipped of data contained within the list to be displayed
+        const dataToDisplay = dataList.slice(ValueList.lowIndex).splice(0,7);
+
+        ValueList.wipe();
+        ValueList.update(dataToDisplay);
+        Canvas.update(dataToDisplay);
     });
 
     //Save on click
@@ -80,12 +102,15 @@ let dataList = [];
 
     //Default line chart created
     Canvas.createChart('line');
-    //loads data from local storage, and passes it to the Chart + UL
+    //Loads data from local storage
     dataList = load();
+    //Loaded data is displayed
+    ValueList.update(dataList);
+    Canvas.update(dataList);
 })();
 
 //
-//UTILITY FUNCTIOn
+//UTILITY FUNCTIONS
 //
 
 function getDate(){
@@ -111,9 +136,7 @@ function load(){
         Canvas.chart.data.timestamps.push(entry.timestamp);
         Canvas.chart.data.datasets.forEach((dataset) => {
             dataset.data.push(entry.value);
-            ValueList.addValue(entry);
         });
     });
-    Canvas.chart.update();
     return loadedData;
 }

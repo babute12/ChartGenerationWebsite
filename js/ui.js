@@ -51,7 +51,7 @@ class Canvas{
         this.chart.update();
     }
     
-    //Updates chart with new values WORKS
+    //Updates chart with new values WORKS, only allows 8 values to be displayed at once
     static update(dataList){
         const labels = this.chart.data.labels = [];
         const timestamps = this.chart.timestamps = [];
@@ -60,6 +60,8 @@ class Canvas{
         const borderColor = this.chart.data.datasets[0].borderColor = [];
         let index = (dataList.length - 1) - 7;
         
+        console.log(dataList);
+
         if(index < 0){
             index = 0;
         }
@@ -79,23 +81,46 @@ class Canvas{
 //Class handles HTML list that holds the numbers
 class ValueList{
     static valueList = document.querySelector('.collection');
-    static row = [];
+    static lowIndex = 0;
 
-    /**
-     * Adds value to value list
-     * @param {The number displayed in list} value 
-     */
+    static update(dataList){
+        dataList.forEach(e => {
+            const li = document.createElement('li');
+            li.classList.add('collection-item');
+            li.innerHTML = `<div><span class="value">${e.value}</span><a href="#!" class="secondary-content"><i class="material-icons remove">clear</i></a></div>`;
+            this.valueList.appendChild(li);
+        });
+    }
+    
+    static wipe(){
+        document.querySelectorAll('.collection-item').forEach(e => {
+            e.remove();
+        });
+    }
+
+
+    /*
     static addValue(entry){
-        if(this.row.length == 8){
+        if(this.rows.length == 8){
             document.querySelector('.collection-item').remove();
-            this.row.shift();
+            document.querySelector('#listUpBtn').classList.remove('hide');
+            document.querySelector('#listDownBtn').classList.remove('hide');
+            this.rows.shift();
         }
-        this.row.push(entry);
+        this.rows.push(entry);
         const li = document.createElement('li');
         li.classList.add('collection-item');
         li.innerHTML = `<div><span class="value">${entry.value}</span><a href="#!" class="secondary-content"><i class="material-icons remove">clear</i></a></div>`;
         this.valueList.appendChild(li);
         }
+    */
+
+    static moveListUp(){
+        console.log("VIP");
+    }
+    static moveListDown(){
+        console.log("VIP");
+    }
 
     /**
      * Removes value from value list
